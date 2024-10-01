@@ -57,6 +57,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         token.id = user.id || user._id;
         token.email = user.email;
+        token.username = user.username;
         token.role = user.role;
         token.isAdmin = user.isAdmin; // Assuming you store this in the database
       }
@@ -66,6 +67,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // Pass token information into session object
       session.user.id = token.id;
       session.user.email = token.email;
+      session.user.username = token.username;
       session.user.role = token.role;
       session.user.isAdmin = token.isAdmin; // Make isAdmin accessible in session
       return session;

@@ -6,6 +6,7 @@ import Links from "./links/Links";
 
 const Navbar = () => {
   const { data: session } = useSession();
+  console.log(session);
 
   return (
     <div className="h-[100px] flex items-center justify-between">
