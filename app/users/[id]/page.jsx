@@ -1,20 +1,9 @@
-import { User } from "@/lib/model";
-import { connectDB } from "@/lib/mongodb";
+import { getUser } from "@/lib/data";
 
 const singleUser = async ({ params }) => {
   const { id } = params;
 
-  let user = [];
-  const getUser = async () => {
-    try {
-      await connectDB();
-      const user = await User.findById(id);
-      return user;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  user = await getUser();
+  const user = await getUser(id);
 
   return (
     <div className="bg-white text-black rounded-lg text-center p-5">

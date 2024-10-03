@@ -3,8 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Notifications from "@/components/Notifications";
-import { auth } from "@/auth";
-import { SessionProvider } from "next-auth/react";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,17 +12,14 @@ export const metadata = {
 const inter = Inter({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }) {
-  const session = await auth();
   return (
     <html lang="en">
       <body className={inter.className}>
         <div className="container min-h-screen flex flex-col justify-between px-5 mx-auto">
-          <SessionProvider session={session}>
-            <Navbar />
-            {children}
-            <Notifications />
-            <Footer />
-          </SessionProvider>
+          <Navbar />
+          {children}
+          <Notifications />
+          <Footer />
         </div>
       </body>
     </html>

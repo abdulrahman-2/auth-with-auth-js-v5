@@ -1,19 +1,8 @@
-import { User } from "@/lib/model";
-import { connectDB } from "@/lib/mongodb";
+import { getUsers } from "@/lib/data";
 import Link from "next/link";
 
 const Users = async () => {
-  let users = [];
-  const getUsers = async () => {
-    try {
-      await connectDB();
-      const users = await User.find();
-      return users;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  users = await getUsers();
+  const users = await getUsers();
   return (
     <div>
       <h1 className="text-3xl text-white font-bold text-center">Users</h1>
